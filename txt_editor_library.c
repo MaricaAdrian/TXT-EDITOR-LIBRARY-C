@@ -18,26 +18,46 @@ void read_file (char file[G_MAX_WORD_LENGTH]) {
 	
     fclose(f);
 	
-	printf("\nFile read successfully.");
+	if(counter > 0){
+		G_FILE_LOADED++;
+		printf("\nFile read successfully.");
+	} else {
+		printf("\nNo words found in the file.");
+	}
+	
 }
 
 
 void print_file(){
 
-	 unsigned int counter = 0;
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
 
-	 printf("\nYour file content is: ");
+	unsigned int counter = 0;
 
-	 while(G_STRING[counter][0] != '\0'){
+	printf("\nYour file content is: ");
 
-		printf(" %s", G_STRING[counter]);
-		++counter;
+	while(G_STRING[counter][0] != '\0'){
 
-	 }
+	printf(" %s", G_STRING[counter]);
+	++counter;
+
+	}
 
 }
 
 void save_to_file(char file[G_MAX_WORD_LENGTH]){
+
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
 
     int counter = 0;
 
@@ -63,6 +83,14 @@ void save_to_file(char file[G_MAX_WORD_LENGTH]){
 }
 
 void find_word(char word_to_find[G_MAX_WORD_LENGTH]){
+
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
+
 
     unsigned int counter = 0;
     unsigned int position_of_instances[G_MAX_WORDS] = {0};
@@ -107,6 +135,14 @@ void find_word(char word_to_find[G_MAX_WORD_LENGTH]){
 
 void find_number_occurrence(char word_to_find[G_MAX_WORD_LENGTH]){
 
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
+
+
     unsigned int counter = 0;
     unsigned int occurrence = 0;
 
@@ -131,6 +167,14 @@ void find_number_occurrence(char word_to_find[G_MAX_WORD_LENGTH]){
 
 
 void replace_word(char word_to_replace[G_MAX_WORD_LENGTH], char word_replace_with[G_MAX_WORD_LENGTH]){
+
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
+
 
     unsigned int counter = 0;
     unsigned int occurence = 0;
@@ -157,6 +201,14 @@ void replace_word(char word_to_replace[G_MAX_WORD_LENGTH], char word_replace_wit
 
 
 void replace_word_number(char word_to_replace[G_MAX_WORD_LENGTH], char word_replace_with[G_MAX_WORD_LENGTH], unsigned int occurrence_number){
+
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
+
 
     unsigned int counter = 0;
     unsigned int occurence = 0;
@@ -188,6 +240,14 @@ void replace_word_number(char word_to_replace[G_MAX_WORD_LENGTH], char word_repl
 }
 
 void sort_to_file_occurrence(char file[G_MAX_WORD_LENGTH]){
+
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
+
 
     unsigned int first_counter = 0;
     unsigned int second_counter = first_counter + 1;
@@ -279,6 +339,14 @@ void sort_to_file_occurrence(char file[G_MAX_WORD_LENGTH]){
 
 void sort_to_file_alphabetical(char file[G_MAX_WORD_LENGTH]){
 
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
+
+
     unsigned int first_counter = 0;
     unsigned int second_counter = first_counter + 1;
     unsigned int max = 0;
@@ -337,6 +405,14 @@ void sort_to_file_alphabetical(char file[G_MAX_WORD_LENGTH]){
 
 unsigned int return_find_number_occurrence(char word_to_find[G_MAX_WORD_LENGTH]){
 
+	if(G_FILE_LOADED == 0){
+		
+		printf("\nNo file loaded. Read a file before trying to do operations.");
+		return;
+		
+	}
+
+
     unsigned int counter = 0;
     unsigned int occurrence = 0;
 
@@ -357,5 +433,4 @@ unsigned int return_find_number_occurrence(char word_to_find[G_MAX_WORD_LENGTH])
     return occurrence;
 
 }
-
 

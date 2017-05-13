@@ -23,6 +23,7 @@ while(1){
     printf("\n7. Replace instance of a word with another word");
     printf("\n8. Sort content of a file by number of words occurrences to another file ");
     printf("\n9. Sort content of a file alphabetical to another file");
+    printf("\n10. Exit");
 
     printf("\nChoose a number for the next step: ");
     scanf("%d", &G_DECISION);
@@ -75,17 +76,18 @@ while(1){
                 scanf("%s", &G_DECISION_STRING);
                 sort_to_file_alphabetical(G_DECISION_STRING);
                 break;
+				
+		case 10: break;
 
         default: printf("\nInvalid step. Please try again.");
                  G_DECISION = 0;
                  break;
     }
 
-
+	if(G_DECISION == 10)
+		break;
 
 }
 
-
-getch();
 
 }
