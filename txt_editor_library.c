@@ -1,5 +1,33 @@
+/**
+
+* @file txt_editor_library.c
+
+* @brief This file contains all functions that are used in the main file.
+
+
+*
+
+* @author  © Marica Adrian-Gabriel
+
+*
+
+* @date 20/06/2017
+
+*/
 #include "txt_editor_library.h"
 
+
+/**
+
+* This function is made for reading all content from a file and storing it.
+
+*
+
+* @param file File from where we will read our content.
+
+*
+
+*/
 void read_file (char file[G_MAX_WORD_LENGTH]) {
 
     unsigned int counter = 0;
@@ -11,52 +39,68 @@ void read_file (char file[G_MAX_WORD_LENGTH]) {
 		return;
     }
 
+	strcpy(G_CURRENT_FILE, file);
 
     while (fscanf(f, " %255s", G_STRING[counter]) == 1 && counter != G_MAX_WORDS) {
         ++counter;
     }
 	
     fclose(f);
-	
+
 	if(counter > 0){
 		G_FILE_LOADED++;
 		printf("\nFile read successfully.");
 	} else {
 		printf("\nNo words found in the file.");
 	}
-	
+
 }
 
+/**
 
+* Function that is printing all stored content to the console.
+
+*
+
+*/
 void print_file(){
+	
+	FILE *f = fopen(G_CURRENT_FILE, "r");
+	char aux;
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
-	}
 
-	unsigned int counter = 0;
+	}
 
 	printf("\nYour file content is: ");
 
-	while(G_STRING[counter][0] != '\0'){
-
-	printf(" %s", G_STRING[counter]);
-	++counter;
-
-	}
+	while(!feof(f)){
+        aux = fgetc(f);
+		printf("%c", aux);
+    }
+	
+	fclose(f);
 
 }
+
+/**
+
+* Function that is saving our file.
+
+* @param file File where our content will be saved.
+
+*/
 
 void save_to_file(char file[G_MAX_WORD_LENGTH]){
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
+
 	}
 
     int counter = 0;
@@ -82,13 +126,21 @@ void save_to_file(char file[G_MAX_WORD_LENGTH]){
 
 }
 
+/**
+
+* Function that is searching through our content and tries to find the given word. Prints information about the given word.
+
+* @param word_to_find The word we want to find.
+
+*/
+
 void find_word(char word_to_find[G_MAX_WORD_LENGTH]){
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
+
 	}
 
 
@@ -133,13 +185,21 @@ void find_word(char word_to_find[G_MAX_WORD_LENGTH]){
     }
 }
 
+/**
+
+* Function that is printing the number of occurrences of a word in our file.
+
+* @param word_to_find The word we want to find occurrences for.
+
+*/
+
 void find_number_occurrence(char word_to_find[G_MAX_WORD_LENGTH]){
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
+
 	}
 
 
@@ -165,14 +225,23 @@ void find_number_occurrence(char word_to_find[G_MAX_WORD_LENGTH]){
     }
 }
 
+/**
+
+* Function that is replacing all words that are the same with our given word with another given word.
+
+* @param word_to_replace The word we want to be replaced.
+
+* @param word_replace_with The word that will take place of our old word.
+
+*/
 
 void replace_word(char word_to_replace[G_MAX_WORD_LENGTH], char word_replace_with[G_MAX_WORD_LENGTH]){
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
+
 	}
 
 
@@ -199,14 +268,25 @@ void replace_word(char word_to_replace[G_MAX_WORD_LENGTH], char word_replace_wit
 
 }
 
+/**
+
+* Function that is replacing the occurrence X of an word with another given word.
+
+* @param word_to_replace The word we want to be replaced.
+
+* @param word_replace_with The word that will take place of our old word.
+
+* @param occurrence The nth occurrence that we want to replace.
+
+*/
 
 void replace_word_number(char word_to_replace[G_MAX_WORD_LENGTH], char word_replace_with[G_MAX_WORD_LENGTH], unsigned int occurrence_number){
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
+
 	}
 
 
@@ -239,13 +319,21 @@ void replace_word_number(char word_to_replace[G_MAX_WORD_LENGTH], char word_repl
 
 }
 
+/**
+
+* Function that is sorting to a file our content by the number of occurrences of the current word.
+
+* @param file File where our words and their number of occurrences will be stored.
+
+*/
+
 void sort_to_file_occurrence(char file[G_MAX_WORD_LENGTH]){
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
+
 	}
 
 
@@ -336,14 +424,21 @@ void sort_to_file_occurrence(char file[G_MAX_WORD_LENGTH]){
 
 }
 
+/**
+
+* Function that is sorting to a file our content in a alphabetical order.
+
+* @param file File where our sorted words will be stored.
+
+*/
 
 void sort_to_file_alphabetical(char file[G_MAX_WORD_LENGTH]){
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
+
 	}
 
 
@@ -403,13 +498,23 @@ void sort_to_file_alphabetical(char file[G_MAX_WORD_LENGTH]){
 
 }
 
+/**
+
+* Function that is returning the number of occurrences of a word.
+
+* @param word_to_find The word we want to find his number of occurrences.
+
+* @return Number of occurrences of the given word.
+
+*/
+
 unsigned int return_find_number_occurrence(char word_to_find[G_MAX_WORD_LENGTH]){
 
 	if(G_FILE_LOADED == 0){
-		
+
 		printf("\nNo file loaded. Read a file before trying to do operations.");
 		return;
-		
+
 	}
 
 

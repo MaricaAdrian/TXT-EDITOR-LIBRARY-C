@@ -1,5 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
+/**
+
+* @file main.c
+
+* @brief Our main file where user can choose options for actions to be performed.
+
+*
+
+* @author  © Marica Adrian-Gabriel
+
+*
+
+* @date 20/06/2017
+
+*/
+
 #include "txt_editor_library.h"
 
 
