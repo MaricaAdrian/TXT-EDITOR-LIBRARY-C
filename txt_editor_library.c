@@ -276,7 +276,7 @@ void replace_word(char word_to_replace[G_MAX_WORD_LENGTH], char word_replace_wit
 
 * @param word_replace_with The word that will take place of our old word.
 
-* @param occurrence The nth occurrence that we want to replace.
+* @param occurrence_number The nth occurrence that we want to replace.
 
 */
 

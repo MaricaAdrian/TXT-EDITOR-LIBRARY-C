@@ -20,8 +20,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define G_MAX_WORD_LENGTH 256
-#define G_MAX_WORDS 512
+#define G_MAX_WORD_LENGTH 256 /*!< Maximum length of a word */
+#define G_MAX_WORDS 512 /*!< Maximum words that will be read */
 
 char G_STRING[G_MAX_WORDS][G_MAX_WORD_LENGTH]; /*!< Our array where we will store our text*/
 char G_DECISION_STRING[G_MAX_WORD_LENGTH]; /*!< Decision from our main file*/
